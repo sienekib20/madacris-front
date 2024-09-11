@@ -1,0 +1,15 @@
+[data-theme="light"] {
+    --app-background: #F4F5F9;
+    --font-regular: "Onest-Regular";
+    --font-thin: "Onest-Light";
+    --font-bold: "Onest-Bold";
+}
+
+body {
+    font-family: 'Onest-Regular';
+    background-color: #F0F0F9;
+}
+
+.wrapper {
+    position: relative;    
+}

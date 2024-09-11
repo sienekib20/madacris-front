@@ -1,0 +1,91 @@
+<style>
+   #checkout-subtotal-val {
+      font-family: 'Montserrat-Bold';
+   }
+</style>
+<div class="popup auth-login px-0 pb-3" id="sec0$90k2aA00">
+   <div class="popup-close-action d-flex ai-center pl-4 pr-2">
+      <span class="close-action-title">Carrinho (4)</span>
+      <a href="" class="action-close-btn ml-auto" id="closesec0$90k2aA00">
+         <i class="bx bx-x"></i>
+      </a>
+   </div>
+
+   <form class="popup-cart-items" method="">
+      <div class="popup-cart-item px-4">
+         <div class="cart0uitem$-manage mb-3">
+            <div class="product-infon d-flex ai-start">
+               <div class="contain-img">
+                  <img src="<?= asset('img/mada/img-1.jpeg') ?>" alt="">
+               </div>
+               <div class="product-infon-name ml-2">
+                  <span>Product name</span>
+                  <small class="text-muted d-block">Tamanho X</small>
+               </div>
+            </div>
+            <a href="" class="action-rem-product$u012 ml-auto">
+               <i class='bx bxs-trash-alt'></i>
+            </a>
+         </div>
+         <div class="cart0uitem1-count d-flex ai-center">
+            <select name="" id="" class="default-input w-15 product-count-cart">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+            </select>
+            <span class="product-single-price ml-auto product-price">AO 10.5K</span>
+         </div>
+      </div>
+      <div class="popup-cart-item px-4">
+         <div class="cart0uitem$-manage mb-3">
+            <div class="product-infon d-flex ai-start">
+               <div class="contain-img">
+                  <img src="<?= asset('img/mada/img-1.jpeg') ?>" alt="">
+               </div>
+               <div class="product-infon-name ml-2">
+                  <span>Product name</span>
+                  <small class="text-muted d-block">Tamanho X</small>
+               </div>
+            </div>
+            <a href="" class="action-rem-product$u012 ml-auto">
+               <i class='bx bxs-trash-alt'></i>
+            </a>
+         </div>
+         <div class="cart0uitem1-count d-flex ai-center">
+            <select name="" id="" class="default-input w-15 product-count-cart">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+            </select>
+            <span class="product-single-price ml-auto product-price">AO 12.5K</span>
+         </div>
+      </div>
+
+      <div class="popup-cart-price mt-4">
+         <div class="d-flex ai-center px-4">
+            <span>SubTotal</span>
+            <span class="product-single-price ml-auto" id="checkout-subtotal-val">AO 20.5K</span>
+         </div>
+         <div class="d-flex ai-center px-4 mt-2">
+            <small>Entrega do Produto: Grátis!</small>
+         </div>
+      </div>
+
+      <div class="popup-cart-action d-flex ai-center mt-3">
+         <a href="" class="action-checkout">Checkout</a>
+         <a href="<?= url('cart') ?>" class="action-checkout">Ver Carrinho</a>
+      </div>
+   </form>
+</div>
+<?= partial('popups.overlay')  ?>
+
+<script src="<?= asset('js/cart/index.js') ?>"></script>
+
+<script>
+   $(closesec0$90k2aA00).click(function(e) {
+      e.preventDefault();
+      $(sec0$90k2aA00).removeClass('push');
+      $(platofm10b394u1).removeClass('show');
+      $('body').css('overflow', 'auto');
+   });
+</script>

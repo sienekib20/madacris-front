@@ -1,0 +1,16 @@
+{
+    "name": "sienekib/madacris-front",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Sienekib\\": "v4/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sienekib",
+            "email": "87730970+sienekib20@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
