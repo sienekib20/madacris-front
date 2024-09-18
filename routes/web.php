@@ -7,7 +7,14 @@ return [
       "/details/{id}" => "ArtigoController@detalhes",
       "/category" => "ArtigoController@categorias",
       "/cart" => "CarrinhoController@index",
-      "/checkout" => "CheckoutController@index"
+      "/checkout" => "CheckoutController@index",
+
+
+      // App
+      "/contact" => "AppController@contact",
+      "/terms" => "AppController@terms",
+      "/policy" => "AppController@policy",
+      "/delivery" => "AppController@delivery",
    ],
 
    "POST" => []

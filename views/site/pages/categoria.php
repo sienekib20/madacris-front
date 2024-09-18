@@ -48,7 +48,20 @@
 
    <div class="d-flex py-3"></div>
 
-   <div class="section-card py-5">
+   <div class="section-card">
+      <div class="section-card-container">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-6 col-12">
+                  <span class="section-card-title">Todos os artigos</span>
+                  <small class="text-muted">Resultado artigos (<span>8</span>) encontrados.</small>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section-card pt-3 pb-5">
       <div class="section-card-contain">
          <div class="container">
             <div class="row reverse-row">
@@ -133,7 +146,7 @@
                               <!-- <div id="slider-price" class="mt-3"></div> -->
                               <input type="text" id="example_id" name="example_name" value="" />
                               <div class="d-flex mt-4"></div>
-                              <div class="price-slider d-flex ai-center">
+                              <div class="price-slider d-flex items-center">
                                  <span>(AO) 10K</span> -
                                  <span>(AO) 25K</span>
                               </div>
@@ -143,70 +156,26 @@
                   </div>
                </div>
 
-               <div class="col-lg-9 mt-5n mt-lg-0 mb-5 mb-lg-0">
-                  <div class="category-products">
-                     <div class="category-header-title">
-                        <span class="category-title">TODOS OS ARTIGOS</span>
-                        <small class="text-muted d-block">Resultados (8) no total</small>
+               <div class="col-lg-9 mt-0 lg:mt-5n">
+                  <div class="pilot-product-category py-5 px-3">
+
+                     <div class="pilot-container-grid grid-cols-2 lg:grid-cols-3">
+                        <?php for ($i = 0; $i < 5; $i++): ?>
+                           <div class="pilot-product-card w-100">
+                              <div class="product-card-img">
+                                 <small class="product-card-promo absolute">Promo</small>
+                                 <img src="<?= asset('img/mada/img-1.jpeg') ?>" alt="" class="img-fuild">
+                              </div>
+                              <div class="product-card-details">
+                                 <a href="<?= url('details', 1) ?>" class="product-card-action-btn">+ Selecionar</a>
+                                 <span class="product-card-name block mt-1">Vestido Frangose</span>
+                                 <small class="text-muted product-category block mt-1n">Categoria Gala</small>
+                                 <span class="text-bold product-card-price block mt-2">AO 10 000,00</span>
+                              </div>
+                           </div>
+                        <?php endfor; ?>
                      </div>
-                     <div class="all-products mt-4">
-                        <div class="col-lg-4 col-6">
-                           <div class="product-item">
-                              <span class="promo-mark">PRO</span>
-                              <div class="contain-img w-100">
-                                 <img src="<?= asset("img/mada/img-3.jpeg") ?>" alt="">
-                              </div>
-                              <div class="product-item-action mt-2">
-                                 <a href="" class="action-select-option">Ver opcoes</a>
-                              </div>
-                              <span class="product-name">Vestido de Gala - Frangose</span>
-                              <small class="text-black d-block text-bold">AO 10 000</small>
-                           </div>
-                        </div>
 
-                        <div class="col-lg-4 col-6">
-                           <div class="product-item">
-                              <span class="promo-mark">PRO</span>
-                              <div class="contain-img">
-                                 <img src="<?= asset("img/mada/img-1.jpeg") ?>" alt="">
-                              </div>
-                              <div class="product-item-action mt-2">
-                                 <a href="" class="action-select-option">Ver opcoes</a>
-                              </div>
-                              <span class="product-name">Vestido de Gala - Frangose</span>
-                              <small class="text-black d-block text-bold">AO 10 000</small>
-                           </div>
-                        </div>
-
-                        <div class="col-lg-4 col-6">
-                           <div class="product-item">
-                              <div class="contain-img">
-                                 <span class="promo-mark">PRO</span>
-                                 <img src="<?= asset("img/category/cat-0.webp") ?>" alt="">
-                              </div>
-                              <div class="product-item-action mt-2">
-                                 <a href="" class="action-select-option">Ver opcoes</a>
-                              </div>
-                              <span class="product-name">Vestido de Gala - Frangose</span>
-                              <small class="text-black d-block text-bold">AO 10 000</small>
-                           </div>
-                        </div>
-
-                        <div class="col-lg-4 col-6">
-                           <div class="product-item">
-                              <div class="contain-img">
-                                 <span class="promo-mark">PRO</span>
-                                 <img src="<?= asset("img/mada/img-2.jpeg") ?>" alt="">
-                              </div>
-                              <div class="product-item-action mt-2">
-                                 <a href="" class="action-select-option">Ver opcoes</a>
-                              </div>
-                              <span class="product-name">Vestido de Gala - Frangose</span>
-                              <small class="text-black d-block text-bold">AO 10 000</small>
-                           </div>
-                        </div>
-
-                     </div>
                   </div>
 
 
@@ -217,8 +186,8 @@
       </div>
    </div>
 
-   <div class="d-flex py-5"></div>
-   <div class="d-flex py-5"></div>
+   <div class="d-flex py-4"></div>
+   <!-- <div class="d-flex py-5"></div> -->
 
 
    <?php partial("footer") ?>

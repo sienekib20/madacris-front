@@ -25,80 +25,67 @@ $footer_link_media = [
 ?>
 <footer>
    <div class="container">
-      <div class="row">
-         <div class="col-lg-5">
-            <span class="app-brand-logo text-white" id="brandLogo">Madacris</span>
-            <small class="app-brand-description" id="appDescription">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime ex nesciunt ad deserunt dolore repellat?</small>
 
-            <div class="footer-contact-list mt-4 mb-5">
-               <div class="contast-list-item flex ai-center">
-                  <i class='bx bxs-phone-call'></i>
-                  <div class="list-item-content">
-                     <small class="text-bold text-white">Celular</small>
-                     <small class="list-item-text" id="phoneNumber">+244 949 901 787</small>
+      <div class="row mb-4">
+
+         <div class="col-lg-10">
+
+            <form action="" class="row items-center">
+               <div class="col-md-6">
+                  <div class="input-group w-100 items-center justify-center">
+                     <div class="w-100 w-lg-50">
+                        <span>
+                           Receber Novidades
+                        </span>
+                        <small class="block">Fique conectado, e sera actualizado</small>
+                     </div>
                   </div>
                </div>
-               <div class="contast-list-item flex ai-center">
-                  <i class='bx bx-headphone'></i>
-                  <div class="list-item-content">
-                     <small class="text-bold text-white">Call center</small>
-                     <small class="list-item-text" id="phoneNumber">+244 949 901 787 | 948 254 864</small>
+               <div class="col-md-6">
+                  <div class="input-group mt-2">
+                     <input type="text" class="default-input" placeholder="Inserir email" required>
+                     <button type="submit" class="default-btn cuppon-absolute-btn">
+                        <small>enviar</small>
+                     </button>
                   </div>
                </div>
-
-               <div class="contast-list-item flex ai-center">
-                  <i class='bx bx-mail-send'></i>
-                  <div class="list-item-content">
-                     <small class="text-bold text-white">Mailbox</small>
-                     <small class="list-item-text" id="phoneNumber">meu@email.com</small>
-                  </div>
-               </div>
-            </div>
-
-         </div>
-
-         <div class="col-lg-4 mb-5 mt-lg-0 mb-lg-0">
-            <span class="footer-title">Categorias</span>
-            <div class="footer-contain">
-               <span class="footer-contain-title">Vestidos</span>
-               <div class="d-flex flex-column">
-                  <a href="">
-                     <small>Vestidos de Gala</small>
-                  </a>
-               </div>
-            </div>
-         </div>
-
-         <div class="col-lg-3 mb-5 mb-lg-0">
-            <span class="footer-title">Subscricao</span>
-            <form action="" method="POST" id="formValidateSubscription">
-               <div class="input-group">
-                  <input type="text" class="form-input" placeholder="Seu email">
-               </div>
-               <button class="btn btn-default">Subscrever</button>
             </form>
          </div>
+      </div>
+   </div>
+   <div class="line-dir"></div>
+   <div class="container mb-4">
 
+      <div class="row mt-4">
+         <div class="col-lg-l0 mx-auto py-4">
+            <div class="flex items-center justify-center flex-wrap">
+               <a href="" class="footer-action-link">Sobre</a>
+               <a href="<?= url('terms') ?>" class="footer-action-link">Termos de uso</a>
+               <a href="<?= url('policy') ?>" class="footer-action-link">Politicas</a>
+               <a href="<?= url('contact') ?>" class="footer-action-link">Contactos</a>
+               <a href="<?= url('delivery') ?>" class="footer-action-link">Entregas & reembolsos</a>
+            </div>
+         </div>
       </div>
    </div>
 
    <div class="line-dir"></div>
 
-   <div class="container">
-      <div class="row mt-4">
-         <div class="col-lg-6 col-12 text-muted">
+   <div class="container py-2">
+      <div class="row mt-3">
+         <div class="col-lg-6 col-12 text-black">
             <small class="d-block">Marcas registradas e marcas são propriedade de seus respectivos proprietários.</small>
             <small>
                &copy; Copyright
                <script>
                   document.write(new Date().getFullYear());
-               </script> <a href="mayongi-ao.com" class="text-underline" target="_blank">Mayongi Lda</a>
-               | Design made by : <a href="tel:+244949901787">Sienekib</a>
+               </script> <a href="mayongi-ao.com" class="text-underline text-black text-bold" target="_blank">Mayongi Lda</a>
+               | Design feito com <i class="bx bx-heart"></i> por : <a href="tel:+244949901787" class="text-underline text-black text-bold">Sienekib</a>
             </small>
 
          </div>
          <div class="col-lg-6">
-            <div class="footer-link-media jc-start jc-lg-end mt-4 mt-lg-0 ml-2n">
+            <div class="footer-link-media justify-start lg:justify-end mt-4 mt-lg-0 ml-2n">
                <?php foreach ($footer_link_media as $link): ?>
                   <a href="<?= $link['link'] ?>" class="footer-link-item">
                      <i class='bx bxl-<?= $link['icon'] ?>'></i>

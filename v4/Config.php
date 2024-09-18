@@ -30,7 +30,7 @@ if (!function_exists("url")) {
    function url($url, $param = null)
    {
       $url = $url == "/" ? "/madacris-front" : "/madacris-front/$url";
-      $url .= $param ? $param : '';
+      $url .= $param ? "/$param" : '';
       return $url;
    }
 }

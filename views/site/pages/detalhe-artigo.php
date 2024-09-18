@@ -16,26 +16,30 @@
          <div class="container">
             <div class="row">
                <div class="col-lg-6">
-                  <div class="details-product-content d-flex">
-                     <div class="col-lg-6 col-6">
-                        <div class="product-item">
-                           <span class="promo-mark">Frente</span>
-                           <div class="contain-img w-100">
-                              <img src="<?= asset("img/mada/img-2.jpeg") ?>" alt="">
-                           </div>
+                  <div class="details-product-content pilot-container-grid grid-cols-2 lg:grid-cols-2">
+                     <div class="product-item mt-2">
+                        <span class="promo-mark">Frente</span>
+                        <div class="contain-img w-100">
+                           <img src="<?= asset("img/mada/img-2.jpeg") ?>" alt="">
                         </div>
                      </div>
-                     <div class="col-lg-6 col-6">
-                        <div class="product-item">
+
+                     <div class="product-item mt-2">
                         <span class="promo-mark">Tras</span>
-                           <div class="contain-img w-100">
-                              <img src="<?= asset("img/mada/img-2.jpeg") ?>" alt="">
-                           </div>
+                        <div class="contain-img w-100">
+                           <img src="<?= asset("img/mada/img-2.jpeg") ?>" alt="">
+                        </div>
+                     </div>
+
+                     <div class="product-item mt-2">
+                        <span class="promo-mark">Tras</span>
+                        <div class="contain-img w-100">
+                           <img src="<?= asset("img/mada/img-2.jpeg") ?>" alt="">
                         </div>
                      </div>
                   </div>
                </div>
-               <div class="col-lg-3 col-sm-6 col-12">
+               <div class="col-lg-3 mt-4 lg:mt-0 col-sm-6 col-12">
                   <div class="details-product">
                      <div class="details-product-top">
                         <span class="product-detail-name">Vestido Frangose</span>
@@ -63,7 +67,7 @@
                            </select>
                         </div>
 
-                        <div class="d-flex ai-center details-product-action mt-5">
+                        <div class="d-flex items-center details-product-action mt-5">
                            <input type="number" class="default-input w-30" value="1" min="1">
                            <a href="" class="action-product-btn">Adiconar no carrinho</a>
                         </div>
@@ -98,7 +102,40 @@
          <div class="container">
             <div class="row">
                <div class="col-12">
-                  <h4>Artigos relacionados</h4>
+                  <h4 class="text-bold">Artigos relacionados</h4>
+                  <small class="block">Desta categoria tem mais. Explore!</small>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section-card ml-2n mt-5n">
+      <div class="section-card-contain">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-9">
+                  <div class="pilot-product-category py-5">
+                     <div class="pilot-container-grid grid-cols-2 lg:grid-cols-3">
+                        <?php for ($i = 0; $i < 3; $i++): ?>
+                           <div class="pilot-product-card w-100">
+                              <div class="product-card-img">
+                                 <small class="product-card-promo absolute">Promo</small>
+                                 <img src="<?= asset('img/mada/img-1.jpeg') ?>" alt="" class="img-fuild">
+                              </div>
+                              <div class="product-card-details">
+                                 <a href="<?= url('details', 1) ?>" class="product-card-action-btn">+ Selecionar</a>
+                                 <span class="product-card-name block mt-1">Vestido Frangose</span>
+                                 <small class="text-muted product-category block mt-1n">Categoria Gala</small>
+                                 <span class="text-bold product-card-price block mt-2">AO 10 000,00</span>
+                              </div>
+                           </div>
+                        <?php endfor; ?>
+                     </div>
+
+                  </div>
+
+
                </div>
             </div>
          </div>

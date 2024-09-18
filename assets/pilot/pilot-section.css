@@ -1,0 +1,29 @@
+.section-heading {
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   font-family: 'Montserrat-Regular';
+}
+
+.section-heading-border {
+   padding-bottom: 1rem;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.section-heading .heading {
+   font-size: 2rem;
+}
+
+.section-heading:has(small) small {
+   font-size: 1.1rem;
+}
+
+@media (max-width: 992px) {
+   .section-heading .heading {
+      font-size: 1.1rem;
+   }
+
+   .section-heading:has(small) small {
+      font-size: 0.85rem;
+   }
+}

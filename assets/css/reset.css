@@ -1,14 +1,20 @@
 /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 *,
-::before,
-::after {
+*::before,
+*::after {
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
   border-color: #e5e7eb;
-  content: '';
+  /* content: ''; */
 }
+
 
 html {
   line-height: 1.5;
@@ -32,7 +38,7 @@ hr {
 
 abbr:where([title]) {
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 
 h1,

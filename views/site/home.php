@@ -9,12 +9,18 @@
       <div class="welcome-text">
          <div class="container">
             <div class="row">
-               <div class="col-lg-7 col-12">
-                  <h1 class="intro-text">Chuva de ofertas para <br> Sua Beleza </h1>
-                  <span>25% Reducao em Todos os Artigos</span>
-                  <div class="action mt-4 flex items-center">
-                     <a href="" class="header-link">Compre Agora</a>
-                     <a href="" class="header-link">Procura Mais</a>
+               <div class="col-lg-6 col-12">
+                  <h1 class="intro-text">
+                     Chuva de ofertas para
+                     <span>
+
+                     </span>
+                     Sua Beleza
+                  </h1>
+                  <span>Oferecemos ate 25% Reducao para todos pedidos feitos a qualquer tipo de artigos. Mais uma diferenca maior para clientes registados na nossa plataforma.</span>
+                  <div class="action mt-9 flex-wrap flex items-center">
+                     <a href="" class="header-link">Faca o seu pedido</a>
+                     <a href="<?= url('category') ?>" class="header-link">Procura Mais</a>
                   </div>
                </div>
             </div>
@@ -23,7 +29,7 @@
 
    </header>
 
-   <div class="section-card">
+   <div class="section-card hidden">
       <div class="section-card-contain">
          <div class="container">
             <div class="row">
@@ -121,39 +127,13 @@
    <div class="section-card">
       <div class="section-card-contain">
          <div class="container">
-            <div class="row">
-               <div class="col-md-3">
-                  <div class="fretsitem">
-                     <img src="<?= ASSET_PATH ?>/img/frets/globe.png" alt="">
-                     <h5>Frete Internacional</h5>
-                     <small>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum dicta</small>
-                  </div>
-               </div>
-               <div class="col-md-3">
-                  <div class="fretsitem">
-                     <img src="<?= ASSET_PATH ?>/img/frets/quality.png" alt="">
-                     <h5>Maior Qualidade</h5>
-                     <small>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum dicta enim neque molestias nam eveniet.</small>
-                  </div>
-               </div>
-               <div class="col-md-3">
-                  <div class="fretsitem">
-                     <img src="<?= ASSET_PATH ?>/img/frets/tag.png" alt="">
-                     <h5>Melhores Ofertas</h5>
-                     <small>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum dicta enim neque molestias nam eveniet.</small>
-                  </div>
-               </div>
-               <div class="col-md-3">
-                  <div class="fretsitem">
-                     <img src="<?= ASSET_PATH ?>/img/frets/lock.png" alt="">
-                     <h5>Pagamento Seguro</h5>
-                     <small> consectetur adipisicing elit. neque molestias nam eveniet.</small>
-                  </div>
-               </div>
+            <span>Temos Artigos Por Categorias</span>
+            <div class="pilot-container-grid grid-cols-5">
+
             </div>
          </div>
       </div>
-   </div>
+   </div>  
 
 
 

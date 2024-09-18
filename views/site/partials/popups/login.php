@@ -16,10 +16,10 @@
       </div>
       <div class="default-input-group my-1">
          <label for="" class="default-input-label">Senha</label>
-         <input type="text" class="default-input" placeholder="palavra-passe">
+         <input type="password" class="default-input" placeholder="palavra-passe">
       </div>
       <div class="default-input-group my-2">
-         <label for="remember" class="d-flex ai-center cursor-pointer mb-4">
+         <label for="remember" class="d-flex items-center cursor-pointer mb-4">
             <input type="checkbox" id="remember" class="default-input w-5">
             <small>Lembrar de mim</small>
          </label>
