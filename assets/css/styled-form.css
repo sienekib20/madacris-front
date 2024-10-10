@@ -1,0 +1,232 @@
+/* Estilos para formulários e botões */
+button,
+input,
+select,
+textarea {
+   display: block;
+   color: inherit;
+   font: inherit;
+   text-align: inherit;
+   text-transform: inherit;
+   letter-spacing: inherit;
+}
+
+button,
+[type=button],
+[type=reset],
+[type=submit],
+[type=file] {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   cursor: pointer;
+}
+
+/* Placeholders */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+input::placeholder,
+textarea::placeholder {
+   color: inherit;
+   opacity: 0.75;
+}
+
+
+.std-input {
+   --std-input-px: 1rem;
+   --std-input-py: 0.75rem;
+   --std-input-border-color: rgba(0, 0, 0, 0.1);
+   --std-input-radius: 0.25rem;
+   --std-input-font-size: 14.7px;
+   --std-focus-border-color: #cad4da;
+   --std-focus-shadow-width: 0.2rem;
+   --std-focus-shadow-color: rgba(0, 0, 0, 0.08);
+   width: 100%;
+   min-height: 1px;
+   display: block;
+   position: relative;
+   font-size: var(--std-input-font-size);
+   border: 1px solid var(--std-input-border-color);
+   padding: var(--std-input-py) var(--std-input-px);
+   outline: none;
+   background-color: transparent;
+   font-family: 'Onest-Regular';
+   border-radius: var(--std-input-radius);
+   transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
+}
+
+.std-input:focus,
+.std-input:active {
+   outline: none;
+   border-color: var(--std-focus-border-color);
+   box-shadow: 0 0 0 var(--std-focus-shadow-width) var(--std-focus-shadow-color);
+}
+
+.std-input.primary {
+   --std-focus-border-color: #1E98ED;
+   --std-focus-shadow-width: 0.2rem;
+   --std-focus-shadow-color: rgba(30, 152, 237, 0.2);
+}
+
+.std-input.danger {
+   --std-focus-border-color: rgba(206, 15, 87, 1);
+   --std-focus-shadow-width: 0.2rem;
+   --std-focus-shadow-color: rgba(206, 15, 87, 0.2);
+}
+
+.std-input.purple {
+   --std-focus-border-color: rgba(137, 85, 233, 0.5);
+   --std-focus-shadow-width: 0.2rem;
+   --std-focus-shadow-color: rgba(137, 85, 233, 0.2);
+}
+
+
+.std-btn {
+   --std-btn-px: 1rem;
+   --std-btn-py: 0.75rem;
+   --std-btn-border-color: rgba(0, 0, 0, 0.1);
+   --std-btn-radius: 0.25rem;
+   --std-btn-font-size: 14.7px;
+   --std-btn-background: white;
+
+   --std-btn-color: #000;
+
+   --std-focus-border-color: #cad4da;
+   --std-focus-shadow-width: 0.2rem;
+   --std-focus-shadow-color: rgba(0, 0, 0, 0.08);
+   --std-btn-focus-background: white;
+
+   width: 100%;
+   min-height: 1px;
+   display: block;
+   position: relative;
+   font-size: var(--std-btn-font-size);
+   border: 1px solid transparent;
+   padding: var(--std-btn-py) var(--std-btn-px);
+   outline: none;
+   background-color: var(--std-btn-background);
+   font-family: 'Onest-Regular';
+   text-align: center;
+   color: var(--std-btn-color);
+   border-radius: var(--std-btn-radius);
+   transition: box-shadow 0.25s ease-in-out, background-color 0.25s ease-in-out;
+}
+
+.std-btn:hover {
+   background-color: var(--std-btn-focus-background);
+}
+
+.std-btn:focus {
+   outline: none;
+   box-shadow: 0 0 0 var(--std-focus-shadow-width) var(--std-focus-shadow-color);
+}
+
+.std-btn.primary {
+   --std-btn-color: #fff;
+   --std-btn-background: rgba(30, 152, 237, 1);
+   --std-btn-focus-background: #14659E;
+   --std-focus-shadow-width: 0.2rem;
+   --std-focus-shadow-color: rgba(30, 152, 237, 0.2);
+}
+
+.std-btn.danger {
+   --std-btn-color: #fff;
+   --std-btn-background: rgba(206, 15, 87, 1);
+   --std-btn-focus-background: #890A3A;
+   --std-focus-shadow-width: 0.2rem;
+   --std-focus-shadow-color: rgba(206, 15, 87, 0.2);
+}
+
+
+.std-btn.purple {
+   --std-btn-color: #fff;
+   --std-btn-background: #8955E9;
+   --std-btn-focus-background: #5B389B;
+   --std-focus-shadow-width: 0.2rem;
+   --std-focus-shadow-color: rgba(137, 85, 233, 0.2);
+}

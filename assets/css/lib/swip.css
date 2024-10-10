@@ -1,0 +1,94 @@
+.swip-container {
+   overflow: hidden;
+   width: 100%;
+   position: relative;
+}
+
+.swip-items {
+   overflow: hidden; /* Evita que itens extras apareçam */
+   width: 100%;
+   display: flex;
+   flex-wrap: nowrap !important;
+ }
+ 
+ .swip-item {
+   width: 100%; /* Certifique-se de que cada item tenha a largura adequada */
+   box-sizing: border-box; /* Inclui padding e borda na largura */
+ }
+ 
+
+/* .swip-items {
+   display: flex;
+   transition: transform 0.5s ease-in-out;
+   scroll-behavior: smooth;
+}
+
+.swip-item {
+   min-width: 25%;
+   /* 4 itens visíveis
+   box-sizing: border-box;
+} */
+
+.swip-item img {
+   width: 100%;
+   border-radius: 5px;
+}
+
+.slider-nav {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgba(0, 0, 0, 0.5);
+   color: white;
+   border: none;
+   padding: 10px;
+   cursor: pointer;
+   font-size: 18px;
+}
+
+.slider-nav.prev {
+   left: 10px;
+}
+
+.slider-nav.next {
+   right: 10px;
+}
+
+@media (max-width: 1200px) {
+   .swip-item {
+      min-width: 33.33%;
+      /* 3 itens visíveis */
+   }
+}
+
+@media (max-width: 900px) {
+   .swip-item {
+      min-width: 50%;
+      /* 2 itens visíveis */
+   }
+}
+
+@media (max-width: 600px) {
+   .swip-item {
+      min-width: 100%;
+      /* 1 item visível */
+   }
+}
+
+.swip-action-controls {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+}
+
+.swip-controls {
+   width: 45px;
+   height: 45px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: rgba(0, 0, 0, 0.7);
+   border: 1px solid rgba(0, 0, 0, 0.2);
+   cursor: pointer;
+}
+

@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'Jost-Bold';
+    src: url('./bundle/Jost-Bold.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Jost-Light';
+    src: url('./bundle/Jost-Light.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Jost-Regular';
+    src: url('./bundle/Jost-Regular.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Onest-Bold';
+    src: url('./bundle/Onest-Bold.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Onest-Light';
+    src: url('./bundle/Onest-Light.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Onest-Regular';
+    src: url('./bundle/Onest-Regular.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito-Light';
+    src: url('./bundle/NunitoSans_10pt-Light.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito-Regular';
+    src: url('./bundle/NunitoSans_10pt-Regular.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito-Bold';
+    src: url('./bundle/NunitoSans_10pt-Bold.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+
+@font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('./bundle/Montserrat-Regular.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('./bundle/Montserrat-Bold.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat-Light';
+    src: url('./bundle/Montserrat-Light.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('./bundle/Montserrat-Medium.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat-Black';
+    src: url('./bundle/Montserrat-Black.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat-Italic';
+    src: url('./bundle/Montserrat-Italic.ttf');
+    font-style: normal;
+    display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('./bundle/Montserrat-ExtraBold.ttf');
+    font-style: normal;
+    display: swap;
+}
+
