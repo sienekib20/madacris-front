@@ -1,6 +1,6 @@
 <?php
 
-class Request
+class Request implements JsonSerializable
 {
    protected $params;
    protected $files;
@@ -14,13 +14,13 @@ class Request
 
    public function __construct()
    {
-      $this->params = $_GET;
-      $this->files = $_FILES;
-      $this->server = $_SERVER;
-      $this->post = $_POST;
-      $this->cookies = $_COOKIE;
-      $this->env = $_ENV;
-      $this->session = $_SESSION;
+      $this->params = $_GET ?? [];
+      $this->files = $_FILES ?? [];
+      $this->server = $_SERVER ?? [];
+      $this->post = $_POST ?? [];
+      $this->cookies = $_COOKIE ?? [];
+      $this->env = $_ENV ?? [];
+      $this->session = $_SESSION ?? [];
 
       // Capturar dados JSON se a requisição for AJAX e tiver conteúdo JSON
       if ($this->isJson()) {
@@ -30,6 +30,67 @@ class Request
 
       $this->setRequestData();
    }
+
+   public function fromApi($env_api_url, $url, $params = [], $method = 'GET', $headers = []) {
+        $ch = curl_init();
+
+
+        if ($method == 'GET') {
+            $queryString = http_build_query($params);
+            $url = $queryString ? $url . '?' . $queryString : $url;
+        } else if ($method == 'POST') {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        }
+        $url = env($env_api_url) . $url;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        if (!empty($headers)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if ($response === false) {
+            throw new \Exception('Curl error: ' . curl_error($ch));
+        }
+
+        curl_close($ch);
+
+        return (object) [
+            'status' => $httpCode,
+            'data' => json_decode($response, true)
+        ];
+    }
+
+   // function fromApi($env_api_url, $url, $params = [], $method = 'GET', $headers = []) {
+   //     $url = env($env_api_url) . $url;
+
+   //     if ($method === 'GET' && !empty($params)) {
+   //         $queryString = http_build_query($params);
+   //         $url .= '?' . $queryString;
+   //     }
+
+   //     $options = [
+   //         'http' => [
+   //             'header'  => !empty($headers) ? implode("\r\n", $headers) : '',
+   //             'method'  => $method,
+   //             'content' => ($method === 'POST') ? http_build_query($params) : null,
+   //         ],
+   //     ];
+
+   //     $context = stream_context_create($options);
+   //     $response = file_get_contents($url, false, $context);
+
+   //     if ($response === false) {
+   //         throw new \Exception('Error fetching data');
+   //     }
+
+   //     return json_decode($response, true);
+   // }
+
 
    public function setRequestData()
    {
@@ -104,6 +165,11 @@ class Request
       return $this->post[$key] ?? null;
    }
 
+   public function file(string $key)
+   {
+      return $this->files[$key] ?? null;
+   }
+
    public function __get($name)
    {
       return $this->requestData->$name ?? null;
@@ -124,5 +190,33 @@ class Request
    public function isJson()
    {
       return isset($this->server['CONTENT_TYPE']) && strpos($this->server['CONTENT_TYPE'], 'application/json') !== false;
+   }
+
+   // Implementar jsonSerialize para customizar a serialização para JSON
+   public function jsonSerialize(): mixed
+   {
+      return [
+         'params' => $this->params,
+         'files' => $this->files,
+         'server' => $this->server,
+         'post' => $this->post,
+         'cookies' => $this->cookies,
+         'env' => $this->env,
+         'session' => $this->session,
+         'requestData' => $this->requestData,
+      ];
+   }
+
+   // Método sanitize para limpar o campo solicitado
+   public function sanitize($key, $default = null)
+   {
+      $value = $this->post[$key] ?? $this->params[$key] ?? $default;
+
+      if ($value) {
+         // Remover tags HTML e caracteres especiais
+         return filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+      }
+
+      return $default;
    }
 }

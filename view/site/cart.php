@@ -44,48 +44,13 @@
                   <div class="cart-products mt-5n">
                      <div class="flex items-center cart-top-table" style="border-bottom: 1px solid rgba(0, 0, 0, 0.15); padding-bottom: 0.5rem; margin-top: -0.5rem !important">
                         <span class="cart-product-title pb-4 adapate-font-size">Ítem Adicionados</span>
-                        <a href="#" class="ml-auto text-black text-underline btn-update-total" disabled role="button">
-                           <small>Actualizar preco</small>
+                        <a href="#" class="ml-auto text-black text-underline btn-update-total" name="limparCarrinho" role="button">
+                           <small>Limpar carrinho</small>
                         </a>
                      </div>
 
                      <div class="container-products">
-                        <div class="cart-products-list w-100">
-                           <div class="cart-product-list-item">
-                              <div class="contain-img">
-                                 <img src="<?= asset('img/item-1.jpg') ?>" alt="">
-                              </div>
-                              <div class="cart-product-name">
-                                 <span class="name adapate-font-size">Vestido Frangose</span>
-                                 <small class="text-black d-block">TAMANHO: X</small>
-                              </div>
-                              <span class="cart-product-price adapate-font-size d-flex w-15">AO 10.3K</span>
-                              <input type="number" class="default-input w-10 text-center" value="1" min="1">
-
-                              <span class="cart-product-price adapate-font-size jc-end d-flex w-15">AO 10.3K</span>
-                              <a href="" class="cart-product-action d-flex w-10">
-                                 <i class="bx bxs-trash-alt adapate-font-size"></i>
-                              </a>
-
-                           </div>
-                           <div class="cart-product-list-item">
-                              <div class="contain-img">
-                                 <img src="<?= asset('img/mada/img-1.jpeg') ?>" alt="">
-                              </div>
-                              <div class="cart-product-name">
-                                 <span class="name adapate-font-size">Vestido Frangose</span>
-                                 <small class="text-black d-block">TAMANHO: X</small>
-                              </div>
-                              <span class="cart-product-price adapate-font-size d-flex w-15">AO 10.3K</span>
-                              <input type="number" class="default-input w-10 text-center" value="1" min="1">
-
-                              <span class="cart-product-price adapate-font-size jc-end d-flex w-15">AO 10.3K</span>
-                              <a href="" class="cart-product-action d-flex w-10">
-                                 <i class="bx bxs-trash-alt adapate-font-size"></i>
-                              </a>
-
-                           </div>
-                        </div>
+                        <div class="cart-products-list w-100" id="listaArtigos"></div>
                      </div>
 
 
@@ -115,20 +80,20 @@
                   <div class="cart-payment-details">
                      <div class="d-flex items-center px-0 border-b pb-3">
                         <span>SubTotal</span>
-                        <span class="product-single-price ml-auto" id="checkout-subtotal-val">AO 20.5K</span>
+                        <span class="product-single-price ml-auto" id="cartSub">AO 20.5K</span>
                      </div>
                      <div class="shipping py-3">
                         <small class="tiny-title font-bold">Forma de entrega</small>
                         <div class="shipping-list my-1 px-2">
                            <div class="input-group">
                               <label for="free-ship">
-                                 <input type="radio" name="shipping" class="default-input-radio" id="free-ship">
+                                 <input type="radio" name="shipping" class="default-input-radio" id="free-ship" checked>
                                  <small>Entrega grátis</small>
                               </label>
-                              <small class="block mt-2 py-2 px-3" style="background-color: #E4E4E4">Isso significa, para levantar o seu artigo pedido, teras que se dirigiar ate nos.</small>
+                              <small class="block w-100 mt-2 py-2 px-3" style="background-color: #E4E4E4">Isso significa, para levantar o seu artigo pedido, teras que se dirigiar ate nos.</small>
                            </div>
                            <label for="encontro" class="my-2">
-                              <input type="radio" name="shipping" class="default-input-radio" id="encontro" checked>
+                              <input type="radio" name="shipping" class="default-input-radio" id="encontro">
                               <small>Ponto de encontro: +5%</small>
                            </label>
                            <label for="casa">
@@ -146,14 +111,14 @@
                      <div class="border-b mt-3"></div>
                      <div class="d-flex items-center py-3 px-0 border-b pb-3">
                         <small>Taxa</small>
-                        <small class="product-single-price ml-auto" id="checkout-subtotal-val">AO 20.5K</small>
+                        <small class="product-single-price ml-auto" id="cartTax">AO 20.5K</small>
                      </div>
                      <div class="d-flex items-center px-0 py-3 border-b pb-3">
                         <span>Total</span>
-                        <span class="product-single-price ml-auto" id="checkout-subtotal-val">AO 20.5K</span>
+                        <span class="product-single-price ml-auto" id="cartTotal">AO 20.5K</span>
                      </div>
                      <div class="popup-cart-action px-0 d-flex items-center mt-4">
-                        <a href="" class="w-100 py-3 action-checkout bg-black">Proceder</a>
+                        <a href="<?= url('checkout') ?>" class="w-100 py-3 action-checkout bg-black">Proceder</a>
                         <span></span>
                      </div>
                   </div>
@@ -170,3 +135,19 @@
 
    <?= view_component('footer') ?>
 </div>
+
+<script>
+   // let listaArt = getCarrinho();
+
+   $(document).ready(function() {
+
+      loadCart();
+
+      $('[name="limparCarrinho"]ki').click(function(e) {
+         e.preventDefault();
+         localStorage.removeItem('em_articles');
+         window.location.reload();
+      });
+
+   });
+</script>

@@ -10,5 +10,7 @@ class AuthController extends Controller
    public function register()
    {
       // TODO:
+
+      return $this->view('auth.register');
    }
 }

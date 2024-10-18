@@ -1076,11 +1076,13 @@ footer button {
 
 
 .cart-products-list {
-    min-width: 600px;
+    width: 100%;
+    min-width: 650px;
 }
 
 .cart-product-list-item {
     width: 100%;
+    max-width: 100%;
     display: flex;
     align-items: center;
     position: relative;
@@ -1100,12 +1102,12 @@ footer button {
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
-    -o-object-position: center;
-    object-position: center;
+    -o-object-position: bottom;
+    object-position: bottom;
 }
 
 .cart-product-name {
-    width: 35%;
+    width: 50%;
 }
 
 .cart-product-name .name {
@@ -1657,12 +1659,34 @@ footer button {
     justify-content: space-between;
 }
 
+.list-card.noflow {
+    overflow: visible;
+}
+
 .list-card-item {
     --list-card-width: 272px;
     width: var(--list-card-width);
     min-width: var(--list-card-width);
     position: relative;
     text-align: center;
+}
+
+.list-card-ticket {
+    --card-ticket-bg: #9181F4;
+    top: -20px;
+    right: -5px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    position: absolute;
+    color: white;
+    font-size: 13px;
+    transform: rotate(15deg);
+    background-color: var(--card-ticket-bg);
 }
 
 .list-ratings {
@@ -1971,5 +1995,6 @@ footer button {
     z-index: -1;
     margin-top: 1rem;
     position: absolute;
+    -o-object-fit: contain;
     object-fit: contain;
 }

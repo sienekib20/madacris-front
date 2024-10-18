@@ -10,7 +10,10 @@ body {
    --styled-primary-color-variant-80: rgba(82, 80, 170, 0.8);
    --styled-primary-color-variant-90: rgba(82, 80, 170, 0.9);
    font-family: 'Onest-Regular';
-   text-size-adjust: 100%;
+   -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+       -ms-text-size-adjust: 100%;
+           text-size-adjust: 100%;
    zoom: 0.99;
    background-color: #f4f4f4;
 }
@@ -283,7 +286,14 @@ a>* {
 .navbar .dropdown.active {
    opacity: 1;
    pointer-events: all;
-   animation: appear 0.5s ease-in-out forwards;
+   -webkit-animation: appear 0.5s ease-in-out forwards;
+           animation: appear 0.5s ease-in-out forwards;
+}
+
+@-webkit-keyframes appear {
+   to {
+      top: 85px;
+   }
 }
 
 @keyframes appear {
@@ -418,6 +428,7 @@ a>* {
    left: 0;
    width: 240px;
    height: 100%;
+   position: -webkit-sticky;
    position: sticky;
    overflow-y: auto;
 }
@@ -478,7 +489,10 @@ a>* {
 .sidebar-items,
 .sidebar-item {
    list-style: none;
-   user-select: none;
+   -webkit-user-select: none;
+      -moz-user-select: none;
+       -ms-user-select: none;
+           user-select: none;
 }
 
 .sidebar-items,

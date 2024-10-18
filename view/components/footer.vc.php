@@ -58,3 +58,46 @@
 		</div>
 	</div>
 </footer>
+
+<?= view_component('script') ?>
+<script>
+	$('[name="openAuthLogin"]').click(function(e) {
+		e.preventDefault();
+		addOverlayAndMuteBody();
+		$(authLogin).addClass('push');
+	});
+	$(document).ready(function() {
+		let valor = window.localStorage.getItem('callLogin') ?? 0;
+		if (valor == 1) {
+			window.localStorage.removeItem('callLogin');
+			$('[name="openAuthLogin"]').click();
+		}
+
+		const val = checkSession();
+
+		if (val == 0) {
+			$(userLogin).removeClass('invisible');
+			$(userLetter).addClass('invisible');
+			$(checkoutLoginInfo).removeClass('invisible');
+			$(hideCheck).removeClass('invisible');
+			$(showCheck).addClass('invisible');
+		} else {
+			$(userLetter).text("");
+			$(userLetter).text(val.data[0].nome[0]);
+			userLetter.dataset.id = val.data[0].id;
+			
+			$(userLogin).addClass('invisible');
+			$(userLetter).removeClass('invisible');
+			$(checkoutLoginInfo).addClass('invisible');
+			$(hideCheck).addClass('invisible');
+			$(showCheck).removeClass('invisible');
+		}
+
+		$(btnEndSession).click(function(e) {
+			e.preventDefault();
+			sessionStorage.removeItem('loggedIn');
+			window.location.reload();
+		});
+
+	});
+</script>

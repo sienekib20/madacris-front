@@ -2,14 +2,20 @@
 
 class ArtigosController extends Controller
 {
-   public function categorias()
+   public function categorias(Request $request)
    {
-      return $this->view('site.categorias');
+      $artigos = $this->get_artigos();
+      $categorias = $this->get_categorias();
+
+      return $this->view('site.categorias', compact('artigos', 'categorias'));
    }
 
    public function get_categoria(Request $request)
    {
-      return $this->view('site.categorias');
+      $artigos = $this->get_artigos();
+      $categorias = $this->get_categorias();
+
+      return $this->view('site.categorias', compact('artigos', 'categorias'));
    }
 
    public function get_detalhes(Request $request)

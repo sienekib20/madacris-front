@@ -2,9 +2,14 @@
 
 class AppController extends Controller
 {
-   public function index()
+   public function index(Request $request)
    {
-      $this->view('site.index');
+      $artigos = $this->get_artigos();
+      $categorias = $this->get_categorias();
+
+      // var_dump($artigos);exit;
+
+      $this->view('site.index', compact('artigos', 'categorias'));
    }
 
    public function contacts()

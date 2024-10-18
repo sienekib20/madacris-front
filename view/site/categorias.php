@@ -3,6 +3,12 @@
       font-family: 'Onest-Bold';
       font-size: 1.2rem;
    }
+
+   @media (max-width: 992px) {
+      .row-to-reverse {
+         flex-direction: column-reverse !important;
+      }
+   }
 </style>
 <?= view_component("include") ?>
 <div class="wrapper">
@@ -26,7 +32,7 @@
             <div class="row">
                <div class="col-lg-6 col-12">
                   <span class="section-card-title block">Todos os artigos</span>
-                  <span class="text-muted">Resultado artigos (<span>8</span>) encontrados.</span>
+                  <span class="text-muted">Resultado artigos (<span><?= count($artigos) ?></span>) encontrados.</span>
                </div>
             </div>
          </div>
@@ -36,7 +42,7 @@
    <div class="section-card pt-3 pb-5">
       <div class="section-card-contain">
          <div class="main-container px-4 px-sm-20">
-            <div class="row reverse-row">
+            <div class="row row-to-reverse">
                <div class="col-lg-3">
                   <div class="product-filters">
                      <small class="product-filters-title">
@@ -49,21 +55,15 @@
                               <i class='bx bx-chevron-down'></i>
                            </a>
                            <div class="filter-list-item-content h-auto">
-                              <a href="" class="filter-link">
+                              <a href="" class="filter-link active">
                                  Tudo
                               </a>
-                              <a href="" class="filter-link active">
-                                 Vestidos Gala
-                                 <span>(10)</span>
-                              </a>
-                              <a href="" class="filter-link">
-                                 Vestidos Festas
-                                 <span>(02)</span>
-                              </a>
-                              <a href="" class="filter-link">
-                                 Casamentos
-                                 <span>(05)</span>
-                              </a>
+                              <?php foreach ($categorias as $categoria): ?>
+                                 <a href="<?= $categoria['categoria_id'] ?>" class="filter-link">
+                                    <?= $categoria['categoria'] ?>
+                                    <!-- <span>(10)</span> -->
+                                 </a>
+                              <?php endforeach; ?>
                            </div>
                         </div>
                         <div class="product-filter-list-item">
@@ -109,7 +109,7 @@
                               </a>
                            </div>
                         </div>
-                        <div class="product-filter-list-item active">
+                        <div class="product-filter-list-item active d-none">
                            <a href="" class="filter-list-item-title clicable pb-2">
                               <span class="text">Preco</span>
                               <i class='bx bx-chevron-down'></i>
@@ -129,25 +129,36 @@
                </div>
 
                <div class="col-lg-9 mt-0 lg:mt-5n">
-                  <div class="pilot-product-category py-5 px-3">
-
-                     <div class="grid grid-cols-2 lg:grid-cols-3">
-                        <?php for ($i = 0; $i < 5; $i++): ?>
-                           <div class="pilot-product-card w-100">
-                              <div class="product-card-img">
-                                 <small class="product-card-promo absolute">Promo</small>
-                                 <img src="<?= asset('img/mada/img-1.jpeg') ?>" alt="" class="img-fuild">
-                              </div>
-                              <div class="product-card-details">
-                                 <a href="<?= url('details', ['id' => 1]) ?>" class="product-card-action-btn">+ Selecionar</a>
-                                 <span class="product-card-name block mt-1">Vestido Frangose</span>
-                                 <small class="text-muted product-category block mt-1n">Categoria Gala</small>
-                                 <span class="text-bold product-card-price block mt-2">AO 10 000,00</span>
+                  <div class="list-card flex-wrap noflow">
+                     <?php foreach ($artigos as $artigo):
+                        $file = $artigo['arquivos'];
+                        if (strpos($artigo['arquivos'], ',')) {
+                           $file = explode(',', $file)[0];
+                        }
+                     ?>
+                        <div class="list-card-item" style="--list-card-width: 250px" data-id="<?= $artigo['artigo_id'] ?>" data-name="<?= $artigo['nome'] ?>" data-cateogry="<?= $artigo['categoria'] ?>" data-price="<?= $artigo['preco'] ?>" data-img="<?= env('API_URL') . 'assets/storage/products/' . $file ?>">
+                           <div class="list-card-img">
+                              <img src="<?= env('API_URL') . 'assets/storage/products/' . $file ?>" alt="">
+                              <div class="list-card-actions">
+                                 <a href="" class="link">
+                                    <i class="bx bx-show"></i>
+                                 </a>
+                                 <a href="" class="link" role="addTocart">
+                                    <i class="bx bx-cart"></i>
+                                 </a>
                               </div>
                            </div>
-                        <?php endfor; ?>
-                     </div>
-
+                           <span class="list-card-ticket d-none">-5%</span>
+                           <span class="list-card-title"><?= $artigo['nome'] ?></span>
+                           <small class="text-muted block list-card-category"><?= $artigo['categoria'] ?></small>
+                           <div class="list-ratings">
+                              <?php for ($i = 0; $i < 5; $i++): ?>
+                                 <i class="bx bx-star"></i>
+                              <?php endfor; ?>
+                           </div>
+                           <span class="list-card-price"><?= $artigo['preco'] ?> KZ</span>
+                        </div>
+                     <?php endforeach ?>
                   </div>
 
 

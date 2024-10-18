@@ -1,4 +1,4 @@
-<?= partial("include") ?>
+<?= view_component("include") ?>
 <style>
    @media (max-width: 992px) {
       .aaaf {
@@ -42,15 +42,15 @@
 
 <div class="wrapper">
 
-   <?= partial('nav.topnav') ?>
+   <?= view_component('nav.topnav') ?>
 
-   <?= partial(
+   <?= view_component(
       'nav.navigator',
       [
          'title' => 'Detalhes Artigos',
          'current' => 'Detalhes',
          'backTo' => 'Inicio',
-         'link' => URL
+         'link' => ROOT
       ]
    )
    ?>
@@ -164,7 +164,7 @@
                   <div class="py-5">
                      <div class="flex aaaf">
                         <?php for ($x = 0; $x < 3; $x++):  ?>
-                           <?= partial('card.item', [
+                           <?= view_component('card.item', [
                               'id' => $x + 1,
                               'productImg' => $x + 1 . '.jpg',
                               'product' => 'Item Frangose',
@@ -185,7 +185,7 @@
 
    <div class="d-flex my-4"></div>
 
-   <?php partial("footer") ?>
+   <?php view_component("footer") ?>
 </div>
 
 <script>
