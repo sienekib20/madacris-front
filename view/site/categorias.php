@@ -15,17 +15,6 @@
 
    <?= view_component('nav.topnav') ?>
 
-   <?= view_component(
-      'nav.navigator',
-      [
-         'title' => 'Todos os Artigos',
-         'current' => 'Categorias',
-         'backTo' => 'Inicio',
-         'link' => ROOT
-      ]
-   )
-   ?>
-
    <div class="section-card">
       <div class="section-card-container">
          <div class="main-container px-4 px-sm-5">
@@ -129,18 +118,18 @@
                </div>
 
                <div class="col-lg-9 mt-0 lg:mt-5n">
-                  <div class="list-card flex-wrap noflow">
+                  <div class="list-card flex-wrap noflow" id="listCardItems" style="margin-top: -2.5rem">
                      <?php foreach ($artigos as $artigo):
                         $file = $artigo['arquivos'];
                         if (strpos($artigo['arquivos'], ',')) {
                            $file = explode(',', $file)[0];
                         }
                      ?>
-                        <div class="list-card-item" style="--list-card-width: 250px" data-id="<?= $artigo['artigo_id'] ?>" data-name="<?= $artigo['nome'] ?>" data-cateogry="<?= $artigo['categoria'] ?>" data-price="<?= $artigo['preco'] ?>" data-img="<?= env('API_URL') . 'assets/storage/products/' . $file ?>">
+                        <div class="list-card-item" style="--list-card-width: 210px" data-id="<?= $artigo['artigo_id'] ?>" data-name="<?= $artigo['nome'] ?>" data-cateogry="<?= $artigo['categoria'] ?>" data-price="<?= $artigo['preco'] ?>" data-img="<?= env('API_URL') . 'assets/storage/products/' . $file ?>" data-desc="<?= $artigo['descricao'] ?>">
                            <div class="list-card-img">
                               <img src="<?= env('API_URL') . 'assets/storage/products/' . $file ?>" alt="">
                               <div class="list-card-actions">
-                                 <a href="" class="link">
+                                 <a href="" data-modal="#modalPreview" class="link" data-target="item-<?= $artigo['artigo_id'] ?>">
                                     <i class="bx bx-show"></i>
                                  </a>
                                  <a href="" class="link" role="addTocart">
@@ -149,11 +138,17 @@
                               </div>
                            </div>
                            <span class="list-card-ticket d-none">-5%</span>
-                           <span class="list-card-title"><?= $artigo['nome'] ?></span>
+                           <a href="<?= url('artigo.details') . "?id=" . $artigo['uuid'] ?>" class="list-card-title text-black mt-2 block"><?= $artigo['nome'] ?></a>
                            <small class="text-muted block list-card-category"><?= $artigo['categoria'] ?></small>
                            <div class="list-ratings">
-                              <?php for ($i = 0; $i < 5; $i++): ?>
-                                 <i class="bx bx-star"></i>
+                              <?php for ($i = 0; $i < 5; $i++):
+                                 if ($artigo['ratings'] >= $i) {
+                                    $class = 'bxs-star active-rating';
+                                 } else {
+                                    $class = 'bx-star';
+                                 }
+                              ?>
+                                 <i class="bx <?= $class ?>"></i>
                               <?php endfor; ?>
                            </div>
                            <span class="list-card-price"><?= $artigo['preco'] ?> KZ</span>
@@ -174,9 +169,110 @@
 
    <span class="flex mt-4"></span>
 
+   <script>
+      let atributos = [];
+      let formData = new FormData();
+
+      $('.filter-link').click(function(e) {
+         e.preventDefault();
+         var node = $(this).parent();
+         node.find('.filter-link').removeClass('active');
+         $(this).addClass('active');
+
+         var tipo = $(this).parent().prev().text().trim();
+         var valor = $(this).text().trim();
+
+         var typeName = tipo.toLocaleLowerCase() === 'tamanho' ? 'tamanho' : 'cor';
+         var typeValor = tipo.toLocaleLowerCase() === 'tamanho' ? 'valor_tamanho' : 'valor_cor';
+
+         // Atualiza ou adiciona os valores no FormData
+         if (tipo.toLocaleLowerCase() === 'tamanho') {
+            formData.set('tamanho', tipo);
+            formData.set('valor_tamanho', valor);
+         } else if (tipo.toLocaleLowerCase() === 'cor') {
+            formData.set('cor', tipo);
+            formData.set('valor_cor', valor);
+         }
+
+         // Atualiza o array de atributos (se necessário)
+         atributos.push({
+            typeName: typeName,
+            typeValor: valor
+         });
+
+         aplicarFiltro(formData);
+      });
+
+
+      function aplicarFiltro(formData) {
+         $.ajax({
+            url: `${api_endpoint.value}view/artigos/variante`,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+               console.log(data);
+               listCardItems.innerHTML = "";
+               if (data.length > 0) {
+                  data.forEach(datum => {
+                     let buildItem = listCardItem(datum);
+                     listCardItems.innerHTML += buildItem;
+                  });
+               } else {
+                  // Crie um array para armazenar os itens
+                  let items = [];
+
+                  <?php foreach ($artigos as $artigo): ?>
+                     // Chame a função listCardItem para cada artigo e adicione ao array
+                     items.push(listCardItem(<?php echo json_encode($artigo); ?>));
+                  <?php endforeach; ?>
+
+                  // Insira todos os itens no innerHTML de uma vez
+                  listCardItems.innerHTML = items.join('');
+               }
+            },
+            error: function(err) {
+               console.log(err);
+            }
+         });
+      }
+
+      function listCardItem(artigo) {
+         var fileArtigo = artigo.arquivos.split(',')[0];
+         let listItem = `
+         <div class="list-card-item" style="--list-card-width: 210px" data-id="${artigo.artigo_id}" data-name="${artigo.nome}" data-cateogry="${artigo.categoria}" data-price="${artigo.preco}" data-img="${ api_endpoint.value + 'assets/storage/products/' + fileArtigo }" data-desc="${artigo.descricao}">
+            <div class="list-card-img">
+               <img src="${ api_endpoint.value + 'assets/storage/products/' + fileArtigo }" alt="">
+               <div class="list-card-actions">
+                  <a href="" data-modal="#modalPreview" class="link" data-target="item-${artigo.artigo_id}">
+                     <i class="bx bx-show"></i>
+                  </a>
+                  <a href="" class="link" onclick="aplicar_add(event)">
+                     <i class="bx bx-cart"></i>
+                  </a>
+               </div>
+            </div>
+            <span class="list-card-ticket d-none">-5%</span>
+            <a href="<?= url('artigo.details') . "?id=" ?>${artigo.uuid}" class="list-card-title text-black mt-2 block">${artigo.nome}</a>
+            <small class="text-muted block list-card-category">${artigo.categoria}</small>
+            <div class="list-ratings">
+               <?php for ($i = 1; $i <= 5; $i++): ?>
+                  ${artigo.ratings >= <?= $i ?> ? '<i class="bx bxs-star active-rating"></i>' : '<i class="bx bx-star"></i>'}
+               <?php endfor; ?>
+            </div>
+            <span class="list-card-price">${artigo.preco} KZ</span>
+         </div>
+      `;
+
+         return listItem;
+      }
+   </script>
 
    <?= view_component('footer') ?>
 </div>
+
+<input type="hidden" id="baseUrl" value="<?= env('') ?>" />
 
 <script>
    // $("#example_id").ionRangeSlider();
@@ -235,13 +331,5 @@
          }
 
       });
-   });
-
-
-   $('.filter-link').click(function(e) {
-      e.preventDefault();
-      var node = $(this).parent();
-      node.find('.filter-link').removeClass('active');
-      $(this).addClass('active');
    });
 </script>

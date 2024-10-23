@@ -1,0 +1,1 @@
+<title><?= $title ?? 'Madacris' ?></title>

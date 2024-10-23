@@ -15,4 +15,8 @@ session()->start();
 
 // Inicializa o app
 
-process()->disapatch();
+try {
+   
+   process()->disapatch();
+
+} catch (\Exception $ex) { echo '<pre>'; print_r($ex);exit; }

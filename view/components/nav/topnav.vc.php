@@ -1,3 +1,4 @@
+<?= view_component('popups.preview') ?>
 <?= view_component('loader') ?>
 <style>
    .invisible {
@@ -11,8 +12,8 @@
       border-radius: 999999999999rem;
       background-color: #000;
       color: white;
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       aspect-ratio: 1/1;
    }
 
@@ -30,6 +31,7 @@
       position: absolute;
       padding: 0.75rem 0;
       opacity: 0;
+      z-index: 9999991;
       pointer-events: none;
    }
 
@@ -64,23 +66,20 @@
          <span class="line"></span>
       </button>
       <a href="<?= url('/') ?>" class="brand">
-         <i class='bx bxl-shopify'></i>
-         madacris.
+         <!-- <i class='bx bxl-shopify'></i> -->
+         <img src="<?= asset('img/icon.ico') ?>" alt="">
+         madacris
       </a>
       <ul class="navbar-items">
          <li class="navbar-item">
-            <a href="<?= url('category.all') ?>" class="navbar-link">Todas os Artigos</a>
+            <a href="<?= url('category.all') ?>" class="navbar-link">Colecção</a>
          </li>
 
          <li class="navbar-item">
-            <a href="<?= url('category') ?>/2" class="navbar-link">Vestidos</a>
+            <a href="<?= url('category') ?>/2" class="navbar-link">Em destaques</a>
          </li>
 
          <li class="navbar-item">
-            <a href="<?= url('category') ?>/3" class="navbar-link">Joias</a>
-         </li>
-
-         <li class="navbar-item ml-lg-auto ml-0">
             <a href="<?= url('about') ?>" class="navbar-link">Sobre</a>
          </li>
 
@@ -88,11 +87,17 @@
             <a href="<?= url('contacts') ?>" class="navbar-link">Contactos</a>
          </li>
 
-         <li class="navbar-item ml-sm-auto ml-lg-0">
+         <li class="navbar-item ml-lg-auto ml-0 ml-sm-auto">
+            <a href="javascript:;" class="navbar-link">
+               <i class="bx bx-search"></i>
+            </a>
+         </li>
+         
+         <li class="navbar-item">
             <a href="" class="navbar-link" id="openCheckoutSection">
-               <!-- <i class="bx bx-cart"></i> -->
-               <i></i>
-               <span class="emoji-cart">🛒</span>
+               <i class="bx bx-cart"></i>
+               <!-- <i></i> -->
+               <!-- <span class="emoji-cart">🛒</span> -->
                <span class="count">0</span>
             </a>
          </li>
@@ -104,13 +109,13 @@
             <a href="" class="navbar-link openLink" id="userLetter"></a>
             <ul class="dropdown">
                <li>
-                  <a href="">Checkout</a>
+                  <a href="<?= url('checkout') ?>">Checkout</a>
                </li>
                <li>
-                  <a href="">Meus pedidos</a>
+                  <a href="javascript:;" id="openWorkspace">Meus pedidos</a>
                </li>
                <li>
-                  <a href="" id="btnEndSession">Terminar sessao</a>
+                  <a href="javascript:;" id="btnEndSession">Terminar sessao</a>
                </li>
             </ul>
          </li>
@@ -120,7 +125,9 @@
 
 
 <?= view_component('popups.auth.login') ?>
+<?= view_component('popups.comentarios') ?>
 <?= view_component('popups.checkout') ?>
+
 <?= view_component('alerts.alerts') ?>
 <?= view_component('nav.mobilenav') ?>
 
@@ -197,4 +204,27 @@
       }
       return 0;
    };
+
+
+   $('.nav-toggler').click(function(e) {
+      e.preventDefault();
+      var h = $('.mobile-m').height();
+
+      if (h == 0) {
+         var cureH = $('.mobile-m').css('height', 'auto').height();
+         $('.mobile-m').css('height', '0');
+         $('.mobile-m').animate({
+            height: cureH
+         }, 150);
+         $(this).addClass('active');
+         $('body').css('overflow', 'hidden');
+      } else {
+         $('.mobile-m').animate({
+            height: 0
+         }, 150);
+         $(this).removeClass('active');
+         $('body').css('overflow', 'auto');
+      }
+
+   });
 </script>

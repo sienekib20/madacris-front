@@ -16,6 +16,16 @@ class AppController extends Controller
    {
       $this->view('site.contacts');
    }
+   
+   public function faqs()
+   {
+      $this->view('site.faqs');
+   }
+   
+   public function terms()
+   {
+      $this->view('site.terms');
+   }
 
    public function services()
    {

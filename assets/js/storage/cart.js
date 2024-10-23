@@ -29,9 +29,7 @@ $(document).ready(function () {
 
    btnAdicionar.forEach(btnAd => {
       $(btnAd).click(function (e) {
-         e.preventDefault();
-         var parent = nodoPai($(this), 'list-card-item');
-         adicionarArtigo(parent);
+         aplicar_add(e);
       });
    });
 
@@ -42,6 +40,11 @@ $(document).ready(function () {
 
 });
 
+function aplicar_add(event) {
+   event.preventDefault();
+   var parent = nodoPai($(event.target), 'list-card-item');
+   adicionarArtigo(parent);
+}
 
 // functions
 

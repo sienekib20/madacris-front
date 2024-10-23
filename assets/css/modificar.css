@@ -1,0 +1,363 @@
+.navbar .brand {
+   font-family: 'Onest-Bold';
+}
+
+.navbar .brand img {
+   width: 35px;
+}
+
+.slide-captions h3 {
+   font-size: 2.8rem;
+   font-family: 'Montserrat-Medium';
+}
+
+/* .list-card-title, */
+.card-title {
+   font-family: 'Montserrat-Bold' !important;
+}
+
+.list-ratings {
+   gap: 3px;
+}
+
+.list-ratings i {
+   font-size: 11px;
+}
+
+
+.contain-img.i {
+   display: block;
+   width: 100%;
+   height: 460px;
+   position: relative;
+}
+
+.contain-img.i img {
+   width: 100%;
+   height: 100%;
+   -o-object-fit: cover;
+   object-fit: cover;
+   -o-object-position: top;
+   object-position: top;
+}
+
+.category-details>span {
+   font-size: 14px;
+   background-color: #000;
+   color: white;
+   padding: 0.25rem 0.5rem;
+}
+
+.category-details h4 {
+   /* font-family: 'Onest-Regular'; */
+   margin: 1rem 0 1.5rem;
+   line-height: 2.15rem;
+}
+
+@media (max-width: 420px) {
+   .category-details h4 {
+      font-size: 1.1rem;
+      line-height: 1.6rem;
+      font-family: 'Montserrat-Medium';
+   }
+}
+
+.category-item {
+   display: flex;
+   align-items: center;
+   gap: 18px;
+   font-size: 1.1rem;
+   padding: 0.62432rem 0;
+   color: #000;
+   position: relative;
+   transition: 0.25s ease-in-out;
+}
+
+.category-item+.category-item {
+   margin-top: 0.75rem;
+}
+
+.category-item:hover {
+   color: rgba(0, 0, 0, 0.5);
+   gap: 28px;
+}
+
+.category-item::after {
+   content: '';
+   bottom: 0;
+   left: 0;
+   width: 0;
+   height: 0.9px;
+   position: absolute;
+   background-color: #000;
+   transition: width 0.25s ease-in-out;
+}
+
+.category-item:hover::after {
+   width: 40%;
+   left: 5%;
+}
+
+.category-item+.btn {
+   display: block;
+   width: 180px;
+   margin-top: 2rem;
+   border-radius: 50px;
+   border: 1px solid rgba(0, 0, 0, 0.2);
+   font-size: 1rem;
+   padding: 0.65rem 0.75rem;
+   text-transform: capitalize;
+}
+
+.category-item+.btn:hover {
+   background-color: #000;
+   color: white;
+}
+
+.img-absolute {
+   position: absolute;
+   bottom: -4rem;
+   right: -2rem;
+   width: 210px;
+   height: 120px;
+}
+
+@media (max-width: 768px) {
+   .img-absolute {
+      right: -1rem;
+   }
+}
+
+.question-title {
+   font-size: 3.1rem;
+   line-height: 3.4rem;
+}
+
+.question-o {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   border: 1px solid rgba(0, 0, 0, 0.5);
+   border-width: 1px 0 1px 0;
+   padding: 1rem 2rem;
+   cursor: pointer;
+}
+
+@media (max-width: 720px) {
+   .slide-captions {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+   }
+
+   .question-title {
+      font-size: 2rem;
+      line-height: 2.4rem;
+   }
+
+   .question-o {
+      padding-left: 1rem;
+      padding-right: 1rem;
+   }
+
+   .slide-captions h3 {
+      font-size: 2rem;
+   }
+
+   .slide-captions span {
+      font-size: 15.4px;
+   }
+}
+
+@media (max-width: 620px) {
+   .slide-captions {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+   }
+
+   .question-title {
+      font-size: 1.7rem;
+      line-height: 2rem;
+   }
+
+   .question-t {
+      font-size: 14px;
+   }
+
+   .question-o .count {
+      width: 35px !important;
+   }
+
+   .slide-captions h3 {
+      font-size: 1.7rem;
+   }
+
+   .slide-captions span {
+      font-size: 14.7px;
+   }
+}
+
+@media (max-width: 370px) {
+   .slide-captions {
+      width: 90%;
+      padding-left: 0rem !important;
+      padding-right: 0rem !important;
+   }
+
+   .slide-captions h3 {
+      font-size: 1.7rem;
+   }
+
+   .slide-captions span {
+      font-size: 13px;
+   }
+}
+
+.list-card-reviews {
+   justify-content: center;
+   gap: 10px;
+}
+
+@media (max-width: 992px) {
+   .list-card-reviews .list-review:not(:nth-child(2)) {
+      flex: 0 0 30%;
+      height: auto !important;
+   }
+
+   .list-card-reviews .list-review:nth-child(2) {
+      flex: 0 0 30%;
+      height: 320px;
+   }
+
+   .list-review-deal {
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+   }
+
+   .list-review-deal+span {
+      font-size: 14px;
+   }
+
+   .list-review-deal+span+a {
+      margin-top: 0rem;
+   }
+}
+
+@media (max-width: 840px) {
+   .list-card-reviews {
+      width: 90%;
+      justify-content: center !important;
+      align-items: center !important;
+      flex-direction: column !important;
+   }
+
+   .list-card-reviews .list-review:nth-child(2) {
+      margin: 1rem 0;
+   }
+
+   .list-card-reviews .list-review {
+      width: 310px;
+      max-width: 100%;
+      height: 320px;
+   }
+
+}
+
+.bg-section-white {
+   background-color: white;
+}
+
+
+
+.question-elem {
+   display: block;
+   width: 100%;
+   position: relative;
+}
+
+.question-o * {
+   pointer-events: none;
+}
+
+.question-elem.active .question-o {
+   pointer-events: none;
+}
+
+.question-elem.active .question-o,
+.question-o:hover {
+   opacity: 0.7;
+}
+
+.question-o .count {
+   display: flex;
+   align-items: center;
+   width: 35px;
+   height: 35px;
+   font-family: 'Montserrat-Bold';
+   transition: width 0.25s ease-in-out;
+}
+
+.question-elem.active .question-o .count,
+.question-o:hover .count {
+   width: 20%;
+}
+
+.question-t {
+   font-family: 'Onest-Bold';
+}
+
+.question-contain {
+   height: 0;
+   overflow: hidden;
+}
+
+.question-contain p {
+   width: 80%;
+   margin-left: auto;
+   padding: 3rem 0;
+   padding-right: 5rem;
+}
+
+@media (max-width: 620px) {
+   .question-contain p {
+      width: 100%;
+      margin-left: auto;
+      padding: 1.5rem 1rem;
+   }
+}
+
+.h-auto {
+   height: auto;
+}
+
+.term-t,
+.table-content {
+   font-size: 1rem;
+   font-family: 'Montserrat-Bold';
+}
+
+.term-t {
+   font-size: 0.9rem;
+   display: block;
+   margin-bottom: 0.75rem;
+}
+
+.term-title {
+   font-size: 1.2rem;
+   font-family: 'Montserrat-Bold';
+}
+
+.topstick {
+   top: 80px;
+   right: 0;
+   position: static;
+}
+
+.backTobtn {
+   right: 0%;
+   bottom: 0%;
+   position: fixed;
+   background-color: #000;
+   color: white !important;
+   font-size: 0.9rem;
+   padding: 0.25rem 0.5rem;
+}

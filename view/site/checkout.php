@@ -255,7 +255,7 @@
                            </div>
                            <label for="agreedItems" class="flex ai-start">
                               <input type="checkbox" name="shipping" class="default-input-radio mt-3n" id="agreedItems">
-                              <small>Li e concordo com os <a href="" class="text-bold text-underline text-black">os termos de uso</a> e <a href="" class="text-bold text-underline text-black">as politicas de privacidade</a> da loja.</small>
+                              <small>Li e concordo com os <a href="<?= url('terms') ?>" class="text-bold text-underline text-black">os termos de uso</a> e <a href="<?= url('terms') ?>" class="text-bold text-underline text-black">as politicas de privacidade</a> da loja.</small>
                            </label>
                         </div>
                      </div>
@@ -397,12 +397,20 @@
             contentType: false,
             processData: false,
             success: function(data) {
+               console.log(data);
                if (data[0] == 403) {
                   alert('Já tens um Pedido Pendente com Esses artigos.');
                   alert('Limpa o teu carrinho');
                   return;
-               }
-               else if (data[0] == 1) {
+               } else if (data[0] == 1) {
+                  localStorage.removeItem('em_articles');
+                  localStorage.removeItem('corGerada');
+                  alert('Pedido enviado com sucesso! Você receberá uma resposta em breve.');
+                  styledAl.showWith('Pedido enviado com sucesso! Você receberá uma resposta em breve.');
+                  setTimeout(() => {
+                     window.location.href = routeEnd.value;
+                  }, 1500);
+               } else if (data[0].referencia) {
                   localStorage.removeItem('em_articles');
                   localStorage.removeItem('corGerada');
                   alert('Pedido enviado com sucesso! Você receberá uma resposta em breve.');

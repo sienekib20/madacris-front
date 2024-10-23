@@ -188,7 +188,7 @@
 
             },
             success: function(data) {
-               // console.log(data);
+               console.log(data);
                if (data[0] == 1) {
                   alert('Adicionado com sucesso');
                   window.localStorage.setItem('callLogin', 1);
@@ -201,7 +201,7 @@
                console.log(error);
                alert('Algo deu errado, tente mais tarde');
                setTimeout(() => {
-                  window.location.reload();
+                  // window.location.reload();
                }, 1500);
             }
          });
