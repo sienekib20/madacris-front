@@ -68,6 +68,12 @@
 		$(authLogin).addClass('push');
 	});
 
+	$('[name="openSideComentario"]').click(function() {
+		$(popupComment).addClass('push');
+		$(platformOverlay).addClass('show');
+		$('body').css('overflow', 'hidden');
+	});
+
 	$(openMinhaConta).click(function(e) {
 		e.preventDefault();
 		workspace();
@@ -83,6 +89,22 @@
 		window.location.href = base_url.value + '/workspace/' + val.data[0].id + '/pedidos';
 	}
 
+	$(btnEndSession).click(function(e) {
+		e.preventDefault();
+		$.ajax({
+			url: base_url.value + '/logout',
+			method: 'POST',
+			contentType: false,
+			processData: false,
+			success: function(d) {
+				sessionStorage.removeItem('loggedIn');
+				window.location.reload();
+			},
+			error: function(ee) {
+				// console.log()
+			}
+		});
+	});
 
 
 	$(document).ready(function() {
@@ -112,12 +134,6 @@
 			$(hideCheck).addClass('invisible');
 			$(showCheck).removeClass('invisible');
 		}
-
-		$(btnEndSession).click(function(e) {
-			e.preventDefault();
-			sessionStorage.removeItem('loggedIn');
-			window.location.reload();
-		});
 
 	});
 

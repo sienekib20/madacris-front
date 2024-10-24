@@ -16,7 +16,6 @@
       -webkit-print-color-adjust: exact !important;
    }
 
-
    .page {
       background: var(--white);
       display: block;
@@ -239,43 +238,162 @@
       color: #bcbcbc;
    }
 </style>
+<style>
+   .invoice-header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding-bottom: 1rem;
+   }
 
+   .status-invoice {
+      padding: 0.25rem 0.75rem;
+      color: #9EA9BF;
+      font-family: 'Onest-Bold';
+      background-color: #D3D8E2;
+   }
+
+   .invoice-table {
+      width: 100%;
+      position: relative;
+   }
+
+   .invoice-table thead tr {
+      background-color: #9EA9BF;
+   }
+
+   .invoice-table thead tr th {
+      padding: 1rem 0;
+      font-size: 13px;
+      font-family: 'Onest-Regular';
+   }
+
+   .invoice-table tbody tr td {
+      padding: 1.45rem 0;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+   }
+
+   .invoice-table tbody tr:nth-child(even) {
+      background-color: #F5F6F8;
+   }
+
+   .invoice-p-title {
+      display: block;
+      font-family: 'Onest-Bold';
+   }
+</style>
+<link rel="stylesheet" href="<?= asset("css/fonts/all.css") ?>">
+<link rel="stylesheet" href="<?= asset("css/fonts/bootstrap-icons.css") ?>">
+<link rel="stylesheet" href="<?= asset("boxicons/css/boxicons.min.css") ?>">
+<link rel="stylesheet" href="<?= asset("css/alquimist.css") ?>">
+<link rel="stylesheet" href="<?= asset("css/aldes.min.css") ?>">
+<link rel="stylesheet" href="<?= asset("css/layouts.css") ?>">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div id="layout-doc-content">
-   	Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat mollitia recusandae minus id explicabo reiciendis velit officia nam corrupti repudiandae quod voluptatem similique possimus minima repellat, ad ducimus aut odio.
+   <div class="my-5 page marca-dagua" size="A4">
+      <div class="py-5 px-5 flex flex-col">
+         <section class="invoice-header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-6">
+                     <img src="<?= asset('img/mada/logo.png') ?>" alt="" style="width: 120px">
+                  </div>
+                  <div class="col-6 justify-end flex flex-col items-end">
+                     <span style="font-family: 'Onest-Bold'">Comprovante</span>
+                     <small class="text-muted">156 University Ave, Toronto</small>
+                     <small class="text-muted">On, Canada, M5H 2H7</small>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="py-3">
+            <div class="container">
+               <div class="row">
+                  <div class="col-7 justify-end flex flex-col items-start">
+                     <span class="text-black">Para:</span>
+                     <span style="font-family: 'Onest-Bold'">Nome do Cliente</span>
+                     <small class="text-muted">Luanda - Angola</small>
+                     <small class="text-primary">email@gmail.com</small>
+                     <small class="text-primary">+244 944 956 928</small>
+                  </div>
+                  <div class="col-5 justify-end flex flex-col items-start">
+                     <small class="text-muted">Factura No: 14</small>
+                     <small class="text-muted">Referência do Pedido: <?= $dadosDoc['referencia'] ?></small>
+                     <small class="text-muted">Data: <?= $dadosDoc['created_at'] ?></small>
+                     <small class="text-muted mb-2">Modo Pagamento: <?= $dadosDoc['modoPagamento'] ?></small>
+                     <small class="status-invoice"><?= $dadosDoc['status'] ?></small>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <section class="mt-4">
+            <table class="invoice-table">
+               <thead>
+                  <tr>
+                     <th scope="col" style="min-width: 40%; padding-left: 10px;">Artigo</th>
+                     <th scope="col" class="text-center" style="min-width: 10%">Qtd.</th>
+                     <th scope="col" class="text-center" style="min-width: 20%">P.Unit</th>
+                     <th scope="col" class="text-right" style="min-width: 30%; padding-right: 10px;">Total</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <?php foreach ($listPedido as $artigo): ?>
+                     <tr>
+                        <td style="padding-left: 10px;">
+                           <span class="invoice-p-title"><?= $artigo->nome ?></span>
+                           <small class="text-muted"><?= $artigo->categoria ?></small>
+                        </td>
+                        <td class="text-muted text-center"><?= $artigo->qtd ?></td>
+                        <td class="text-muted text-center" name="valor"><?= $artigo->preco ?></td>
+                        <td class="text-muted text-right" style="padding-right: 10px;" name="valor">
+                           <?= $artigo->preco * $artigo->qtd ?>
+                        </td>
+                     </tr>
+                  <?php endforeach; ?>
+               </tbody>
+            </table>
+         </section>
+         <footer class="mt-auto">
+            <div class="row">
+               <div class="container">
+                  <div class="col-4 ml-auto">
+                     <div class="flex items-center justify-between">
+                        <small>SubTotal:</small>
+                        <small class="">A0 <span name="valor"><?= $dadosDoc['total'] ?></span> </small>
+                     </div>
+                     <div class="flex items-center justify-between">
+                        <small>Desconto:</small>
+                        <small>A0 <span name="valor"><?= $dadosDoc['desconto'] ?></span></small>
+                     </div>
+                     <div class="flex items-center justify-between">
+                        <small>Total:</small>
+                        <small>A0 <span name="valor"><?= $dadosDoc['total'] ?></span></small>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </footer>
+      </div>
+   </div>
 </div>
 
+<script src="<?= asset("js/jquery-3.3.1.min.js") ?>"></script>
 <script>
-   function openDoc() {
-      return `
-                <div class="my-5 page marca-dagua" size="A4">
-                    <div class="p-5">
-            `;
-   }
-
-   function closeDoc(current, totalPaginas) {
-      const paginateSectionHTML = `
-                        <small class="d-flex justify-content-end mt-auto" style="top: 95%; right: 3rem; position: absolute;font-size: 6pt;">
-                            ${current} de ${totalPaginas}
-                        </small>
-                    </div>
-                </div>
-            `;
-      return paginateSectionHTML;
-   }
-
-   $(document).ready(function(e) {
-
-      var mainDoc = document.querySelector('#layout-doc-content');
-
-      const dataLine = <?php echo json_encode($artigo); ?>;
-      const totalLinhas = dataLine.length;
-      const linhasPorPagina = 24;
-      const totalPaginas = Math.ceil(totalLinhas / linhasPorPagina);
-
-      let documentParts = [];
-
-
-      mainDoc.innerHTML = documentParts.join("");
-
+   $(document).ready(function() {
+      var valorField = document.querySelectorAll('[name="valor"]');
+      valorField.forEach(field => {
+         let valor = parseFloat(field.textContent); // Convertendo para número
+         field.textContent = currencyFormat(valor); // Formatando
+      });
    });
+
+   function currencyFormat(valor) {
+      return valor.toLocaleString('pt-PT', {
+         style: 'currency',
+         currency: 'AOA', // Substitua pela moeda correta
+         minimumFractionDigits: 2,
+         maximumFractionDigits: 2
+      });
+   }
 </script>

@@ -60,6 +60,8 @@
          formData.append('password', password);
          formData.append('retrieve', true);
 
+         const expirationTime = 30 * 60 * 1000;
+
          $.ajax({
             url: endpoint.value + 'authenticate',
             method: 'POST',
@@ -75,11 +77,36 @@
                   const userSession = {
                      id: data[0].id,
                      data: data,
-                     timestamp: Date.now()
+                     timestamp: Date.now(),
+                     expires: Date.now() + expirationTime
                   };
-
-                  sessionStorage.setItem('loggedIn', JSON.stringify(userSession));
-                  window.location.reload();
+                  $.ajax({
+                     url: base_url.value + '/set-user',
+                     method: 'POST',
+                     processData: false,
+                     contentType: 'application/json',
+                     data: JSON.stringify({
+                        id: data[0].id,
+                        nome: data[0].nome,
+                        acesso: data[0].accesso, // use null em vez de "null"
+                        email: data[0].email,
+                        estado: data[0].estado,
+                        img_perfil: data[0].img_perfil,
+                        password: data[0].password,
+                        profileletter: data[0].profileletter,
+                        tipoaccesso_id: data[0].tipoaccesso_id, // use null em vez de "undefined"
+                        user_id: data[0].user_id // use null em vez de "null"
+                     }),
+                     success: function(res) {
+                        sessionStorage.setItem('loggedIn', JSON.stringify(userSession));
+                        console.log(res);
+                        window.location.reload();
+                     },
+                     error: function(err) {
+                        console.log(err);
+                        alert('Alguma coisa deu errado! Tente depois')
+                     }
+                  });
                }
             },
             error: (error) => {

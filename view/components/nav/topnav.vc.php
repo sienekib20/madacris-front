@@ -187,7 +187,7 @@
 
    const checkSession = () => {
       const userSession = JSON.parse(sessionStorage.getItem('loggedIn')) ?? false;
-
+      
       if (userSession) {
          const currentTime = Date.now();
          const sessionLimit = 30 * 60 * 1000; // Limite de 30 minutos (30 minutos * 60 segundos * 1000 milissegundos)

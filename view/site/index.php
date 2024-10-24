@@ -114,7 +114,7 @@
                            explorar tudo
                         </a>
                         <small class="text-muted block mt-4 w-lg-60">Podes deixar o teu comentário, isso vai nos ajudar a trazer melhorias para você
-                           <a href="javascript:;" id="openSideComentario" class="text-black text-underline">Deixar comentário</a>
+                           <a href="javascript:;" name="openSideComentario" class="text-black text-underline">Deixar comentário</a>
                         </small>
                      </div>
                   </div>
@@ -260,12 +260,6 @@
 <input type="hidden" id="route_root" value="<?= ROOT ?>" />
 
 <script>
-
-   $(openSideComentario).click(function() {
-      $(popupComment).addClass('push');
-      $(platformOverlay).addClass('show');
-      $('body').css('overflow', 'hidden');
-   });
 
 
    $(document).ready(function() {

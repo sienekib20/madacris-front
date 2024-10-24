@@ -9,6 +9,8 @@ class AppController extends Controller
 
       // var_dump($artigos);exit;
 
+      // echo '<pre>'; print_r($_SESSION['loggedIn']);exit;
+
       $this->view('site.index', compact('artigos', 'categorias'));
    }
 

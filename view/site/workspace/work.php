@@ -32,7 +32,7 @@
    }
 
    .modal-contain {
-      width: 768px;
+      width: 830px;
       max-width: 95%;
       border-radius: 10px;
       background-color: white;
@@ -87,8 +87,13 @@
       width: 100%;
       height: 100%;
       position: relative;
+      margin: 0 auto;
    }
 </style>
+
+<style>
+</style>
+
 
 <?= view_component("include") ?>
 <div class="wrapper">
@@ -97,114 +102,61 @@
 
    <div class="section-card">
       <div class="section-card-container">
-         <div class="main-container px-4 px-sm-5">
+         <div class="workspace-container">
             <div class="row">
                <div class="col-lg-6 col-12">
-                  <span class="section-card-title block">Workspace</span>
+                  <span class="section-card-title block">My Workspace</span>
+                  <span>Accompanhe a evolução dos teus dados.</span>
                </div>
             </div>
          </div>
       </div>
    </div>
 
-   <div class="section-card pt-3 pb-5">
-      <div class="section-card-contain">
-         <div class="main-container px-4 px-sm-5">
-            <div class="row">
-               <div class="col-lg-3">
-                  <aside class="sidepane">
-                     <ul class="items">
-                        <li>
-                           <a href="">Minha conta</a>
-                        </li>
-                        <li>
-                           <a href="">Meus Pedidos</a>
-                        </li>
-                        <li>
-                           <a href="">Comentarios</a>
-                        </li>
-                     </ul>
-                  </aside>
-               </div>
-               <div class="col-lg-9">
-                  <div class="tabs">
-                     <div class="tab-item active">
-                        <!-- Minha Conta -->
-                     </div>
-                     <div class="tab-item active">
-                        <div class="col-12">
-                           <div class="cart-products mt-5n">
-                              <div class="flex items-center cart-top-table" style="border-bottom: 1px solid rgba(0, 0, 0, 0.15); padding-bottom: 0.5rem; margin-top: -0.5rem !important">
-                                 <span class="cart-product-title pb-4 adapate-font-size">Pediso feitos</span>
-                                 <a href="#" class="ml-auto text-black text-underline btn-update-total" name="" role="button">
-                                    <small>Limpar lista</small>
-                                 </a>
-                              </div>
+   <a href="javascript:;" class="openNow">Menu</a>
 
-                              <div class="container-products">
-                                 <?php foreach ($pedidos as $pedido): $pedido = (object) $pedido;
-                                    $file = $pedido->arquivos;
-                                    if (strpos($pedido->arquivos, ',')) {
-                                       $file = explode(',', $file)[0];
-                                    }
-                                 ?>
-                                    <div class="cart-products-list w-100" data-id="list">
-                                       <div class="cart-product-list-item" style="min-width: 100%">
-                                          <div class="contain-img" style="min-width: 10%">
-                                             <img src="<?= env('API_URL') . 'assets/storage/products/' . $file ?>" alt="">
-                                          </div>
-                                          <div class="cart-product-name ml-4" style="min-width: 280px">
-                                             <span class="name adapate-font-size"><?= $pedido->nome ?></span>
-                                             <small class="text-muted d-block"><?= $pedido->categoria ?></small>
-                                          </div>
-                                          <span class="cart-product-price adapate-font-size d-flex w-15" style="min-width: 140px">AO <?= $pedido->preco ?></span>
-                                          <input type="number" id="artigo-item-${index}" class="default-input w-10 text-center" value="<?= $pedido->qtd ?>" readonly style="min-width: 80px" />
+   <div class="section-card pt-0">
+      <div class="section-card-contain pt-0">
+         <div class="flex items-start flex-wrap workspace-container">
+            <?= view_component('nav.workspace-aside') ?>
 
-                                          <span class="cart-product-price ml-4 adapate-font-size d-flex w-15" style="min-width: 140px">AO <?= $pedido->preco * $pedido->qtd ?>.00</span>
+            <div class="workspace-pedidos flex flex-wrap" style="margin-top: -3rem">
+               <?php foreach ($pedidos as $pedido): $pedido = (object) $pedido; ?>
+                  <div class="col-md-6 mt-4">
+                     <div class="workspace-pedido-item">
+                        <small class="wstatus-pedido"><?= $pedido->estado ?></small>
+                        <span class="onest-bold mt-2">Pedido <?= $pedido->ref_pedido ?></span>
+                        <small class="text-muted">Qtd. Artigo Adicionado: <?= $pedido->qtdItems ?></small>
+                        <small class="text-muted block">Desconto: <?= $pedido->desconto ?></small>
+                        <span class="workspace-price"> <i class="bi bi-file"></i> Total: <span id="valorAd">
+                              <?= $pedido->total ?>
+                           </span> </span>
+                        <div class="flex items-center mt-4">
+                           <?php $token = bin2hex(random_bytes(32 / 2)); ?>
+                           <input type="hidden" id="inputUrlToPdf_<?= str_replace('#', '', $pedido->ref_pedido) ?>" value="<?= url('shop') . '?doc=' . $token . '&i=' . str_replace('#', '', $pedido->ref_pedido) . '&payment=' . $pedido->modo_pagamento ?>">
 
-                                          <span class="cart-product-price adapate-font-size jc-end d-flex w-15 mr-3" id="cartProductPrice" style="min-width: 200px">
-                                             <?= \DateTime::createFromFormat('Y-m-d', explode(' ', $pedido->created_at)[0])->format('d-m-Y') ?>
-                                          </span>
-
-                                          <span class="cart-product-price adapate-font-size jc-end d-flex w-15 mr-3" id="cartProductPrice" style="min-width: 100px">
-                                             <?= \DateTime::createFromFormat('H:i:s', explode(' ', $pedido->created_at)[1])->format('H:i') ?>
-                                          </span>
-
-                                          <span class="cart-product-price adapate-font-size jc-end d-flex w-15 mr-3" id="cartProductPrice" style="min-width: 200px">
-                                             Estado: <?= $pedido->estado ?>
-                                          </span>
-                                          <a href="" class="cart-product-action d-flex w-20">
-                                             <!-- <i class="bx bxs-trash-alt adapate-font-size"></i> -->
-
-                                          </a>
-                                          <?php $token = bin2hex(random_bytes(32 / 2)); ?>
-                                          <input type="hidden" id="inputUrlToPdf" value="<?= url('shop') . '?doc=' . $token ?>">
-                                          <a href="javascript:;" class="cart-product-action text-underline d-flex w-20" id="openDocPdf" data-ref="<?= $pedido->ref_pedido ?>">
-                                             ver
-                                             <!-- <i class="bx bxs-show adapate-font-size"></i> -->
-                                             <!-- Mostrar Lista em forma de PDF (RECIBO DO CLIENTE - A CARREGAR DO BACK) -->
-                                          </a>
-                                          <a href="" id="removerCurrentPedido" data-ref="<?= $pedido->ref_pedido ?>" class="cart-product-action d-flex w-20">
-                                             <i class="bx bxs-edit adapate-font-size"></i>
-                                          </a>
-
-                                       </div>
-                                    </div>
-                                 <?php endforeach; ?>
-                              </div>
-
-                           </div>
+                           <a href="javascript:;" data-ref="<?= str_replace('#', '', $pedido->ref_pedido) ?>" class="workspace-action-btn openDocPdf">
+                              <i class="bx bx-printer"></i>
+                              ver
+                           </a>
+                           <a href="javascript:;" data-ref="<?= str_replace('#', '', $pedido->ref_pedido) ?>" class="workspace-action-btn printDocPdf">
+                              <i class="bx bx-download"></i>
+                              baixar
+                           </a>
                         </div>
                      </div>
-                     <div class="tab-item">
-                        <!-- Comentarios -->
-                     </div>
                   </div>
-               </div>
+               <?php endforeach; ?>
+
             </div>
+
          </div>
       </div>
    </div>
+
+   <span class="d-flex my-4"></span>
+   <span class="d-flex my-4"></span>
+   <span class="d-flex my-5"></span>
 
 
    <span class="flex mt-4"></span>
@@ -217,10 +169,10 @@
             </a>
          </div>
          <div class="modal-body">
-            <iframe src="" frameborder="0" id=""></iframe>
+            <iframe frameborder="0" id="docRecibo" width="100%" style="height: 60vh;"></iframe>
          </div>
          <div class="modal-footer">
-            <a href="" class="print flex items-center">
+            <a href="" id="btn-print" class="print flex items-center">
                <small class="bi bi-printer"></small>
                imprimir
             </a>
@@ -233,7 +185,42 @@
 </div>
 
 <script>
+
+   $(document).ready(function(e) {
+      $('.openNow').click(function() {
+         $('.workspace-sidepane').toggleClass('active');
+      });
+   });
+
    $(document).ready(function() {
+      // Função para baixar o PDF
+      async function downloadPdf(url) {
+         const response = await fetch(url);
+         const blob = await response.blob();
+         const link = document.createElement('a');
+         link.href = window.URL.createObjectURL(blob);
+         link.download = 'documento.pdf'; // Nome do arquivo
+         document.body.appendChild(link);
+         link.click();
+         document.body.removeChild(link);
+      }
+
+      // Função para imprimir o iframe
+      function printIframe(iframe) {
+         return new Promise((resolve) => {
+            iframe.contentWindow.print();
+            // Espera um tempo antes de resolver, ajuste conforme necessário
+            setTimeout(resolve, 1000);
+         });
+      }
+
+      $(document).on("click", "#btn-print", async function(e) {
+         e.preventDefault();
+         var iframe = document.getElementById('docRecibo');
+         await printIframe(iframe);
+         console.log('Impressão concluída');
+      });
+
       $('.closeMode').click((e) => {
          e.preventDefault();
          $('.modal-doc').removeClass('show');
@@ -241,17 +228,90 @@
       });
 
       // Abrir o modal ao clicar no link
-      $('.cart-product-action#openDocPdf').click(function(e) {
+      $('.openDocPdf').click(async function(e) {
          e.preventDefault();
-
          // Obtém a URL do documento
-         const url = $(this).closest('.cart-product-list-item').find('#inputUrlToPdf').val();
+         var input = document.querySelector(`#inputUrlToPdf_${e.target.dataset.ref}`);
+         const url = input.value;
 
          // Define o src do iframe
          $('iframe').attr('src', url);
+         console.log($('iframe'));
 
          // Mostra o modal
          $('.modal-doc').addClass('show');
       });
+
+      $('.printDocPdf').click(async function(e) {
+         e.preventDefault();
+         // Obtém a URL do documento
+         var input = document.querySelector(`#inputUrlToPdf_${e.target.dataset.ref}`);
+         const url = input.value;
+
+         // Define o src do iframe
+         $('iframe').attr('src', url);
+
+         // Chama a impressão
+         await printIframe(document.getElementById('docRecibo'));
+      });
+
+      // Adicionando evento para download
+      $('.downloadDocPdf').click(async function(e) {
+         e.preventDefault();
+         // Obtém a URL do documento
+         var input = document.querySelector(`#inputUrlToPdf_${e.target.dataset.ref}`);
+         const url = input.value;
+
+         // Chama a função para baixar o PDF
+         await downloadPdf(url);
+      });
    });
+
+
+   // $(document).ready(function() {
+
+   //    $(document).on("click", "#btn-print", function(e) {
+   //       e.preventDefault();
+   //       var iframe = document.getElementById('docRecibo');
+   //       iframe.contentWindow.print();
+   //    });
+
+
+   //    $('.closeMode').click((e) => {
+   //       e.preventDefault();
+   //       $('.modal-doc').removeClass('show');
+   //       $('iframe').attr('src', ''); // Limpa o src do iframe ao fechar
+   //    });
+
+   //    // Abrir o modal ao clicar no link
+   //    $('.openDocPdf').click(function(e) {
+   //       e.preventDefault();
+   //       // Obtém a URL do documento
+   //       var input = document.querySelector(`#inputUrlToPdf_${e.target.dataset.ref}`)
+   //       const url = input.value; //$(this).closest('.cart-product-list-item').find('#inputUrlToPdf').val();
+   //       // alert(url);
+   //       // Define o src do iframe
+   //       $('iframe').attr('src', url);
+   //       console.log($('iframe'))
+
+   //       // Mostra o modal
+   //       $('.modal-doc').addClass('show');
+   //    });
+
+   //    $('.printDocPdf').click(function(e) {
+   //       e.preventDefault();
+   //       // Obtém a URL do documento
+   //       var input = document.querySelector(`#inputUrlToPdf_${e.target.dataset.ref}`)
+   //       const url = input.value; //$(this).closest('.cart-product-list-item').find('#inputUrlToPdf').val();
+   //       // alert(url);
+   //       // Define o src do iframe
+   //       $('iframe').attr('src', url);
+   //       // console.log($('iframe'))
+
+   //       $('#btn-print').click();
+
+   //       // Mostra o modal
+   //       // $('.modal-doc').addClass('show');
+   //    });
+   // });
 </script>

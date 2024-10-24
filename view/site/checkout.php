@@ -397,7 +397,7 @@
             contentType: false,
             processData: false,
             success: function(data) {
-               console.log(data);
+               return;
                if (data[0] == 403) {
                   alert('Já tens um Pedido Pendente com Esses artigos.');
                   alert('Limpa o teu carrinho');
@@ -410,7 +410,7 @@
                   setTimeout(() => {
                      window.location.href = routeEnd.value;
                   }, 1500);
-               } else if (data[0].referencia) {
+               } else if (data[0].referencia || data[0] == "") {
                   localStorage.removeItem('em_articles');
                   localStorage.removeItem('corGerada');
                   alert('Pedido enviado com sucesso! Você receberá uma resposta em breve.');

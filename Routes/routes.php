@@ -6,6 +6,10 @@ require_once __DIR__ . '/anotation/ProcessRoute.php';
 
 // Rota de Login
 Route::post("/login", 'AuthController@login');
+Route::post("/set-user", 'AuthController@set');
+Route::post("/logout", 'AuthController@rem');
+
+
 Route::get("/register", 'AuthController@register');
 
 
@@ -29,9 +33,12 @@ Route::get('/terms', 'AppController@terms');
 
 // Workspace
 
-Route::get('/workspace/{id}/pedidos', 'WorkspaceController@index');
-Route::get('/workspace/{id}/conta', 'WorkspaceController@index');
-Route::get('/workspace/{id}/comentarios', 'WorkspaceController@index');
+Route::privateRoute(function () {
+   Route::get('/workspace/{id}/pedidos', 'WorkspaceController@index');
+   Route::get('/workspace/{id}/conta', 'WorkspaceController@index');
+   Route::get('/workspace/{id}/comentarios', 'WorkspaceController@index');
+});
+
 
 
 Route::get('/shop', 'WorkspaceController@getPdf');
